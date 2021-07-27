@@ -8,8 +8,8 @@ const Tab = createBottomTabNavigator();
 export default function CoffeeTabs() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="NewCoffee" component={NewCoffee} />
-      <Tab.Screen name="BrewCoffee" component={BrewCoffee} />
+      <Tab.Screen name="Brew Your Coffee" component={BrewCoffee} />
+      <Tab.Screen name="Enter Coffee Information" component={NewCoffee} />
     </Tab.Navigator>
   );
 }
