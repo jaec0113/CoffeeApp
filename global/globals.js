@@ -13,5 +13,14 @@ export const globalStyles = StyleSheet.create({
   },
   screenTitle: {
     fontSize: 24,
+    marginTop: 40,
+  },
+  formError: {
+    color: 'red',
+    textAlign: 'center',
+  },
+  formWarning: {
+    color: 'gold',
+    textAlign: 'center',
   },
 });

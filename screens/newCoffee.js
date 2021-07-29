@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Text, TextInput} from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import {globalStyles} from '../global/globals';
@@ -13,7 +14,7 @@ const reviewSchema = yup.object({
   cupProfile: yup.string().required().min(5),
 });
 
-export default function NewCoffee() {
+export default function NewCoffee({addCoffee}) {
   return (
     <View style={globalStyles.form}>
       <View>
@@ -28,15 +29,87 @@ export default function NewCoffee() {
           processing: '',
           cupProfile: '',
         }}
-        validationSchema={reviewSchema}>
-        <View>
-          <TextInput placeholder="Coffee Name" style={styles.input} />
-          <TextInput placeholder="Roaster" style={styles.input} />
-          <TextInput placeholder="Origin" style={styles.input} />
-          <TextInput placeholder="Varietal" style={styles.input} />
-          <TextInput placeholder="Processing Method" style={styles.input} />
-          <TextInput placeholder="Cup Profile" style={styles.input} />
-        </View>
+        validationSchema={reviewSchema}
+        onSubmit={(values, actions) => {
+          addCoffee(values);
+          actions.resetForm();
+        }}>
+        {formikProps => (
+          <KeyboardAwareScrollView>
+            <View style={styles.coffeeForm}>
+              <TextInput
+                placeholder="Coffee Name"
+                style={styles.input}
+                onChangeText={formikProps.handleChange('coffee')}
+                value={formikProps.values.coffee}
+                onBlur={formikProps.handleBlur('coffee')}
+              />
+              <Text style={globalStyles.formError}>
+                {formikProps.touched.coffee && formikProps.errors.coffee}
+              </Text>
+              <TextInput
+                placeholder="Roaster"
+                style={styles.input}
+                onChangeText={formikProps.handleChange('roaster')}
+                value={formikProps.values.roaster}
+                onBlur={formikProps.handleBlur('roaster')}
+              />
+              <Text style={globalStyles.formError}>
+                {formikProps.touched.roaster && formikProps.errors.roaster}
+              </Text>
+              <TextInput
+                placeholder="Origin"
+                style={styles.input}
+                onChangeText={formikProps.handleChange('origin')}
+                value={formikProps.values.origin}
+                onBlur={formikProps.handleBlur('origin')}
+              />
+              {formikProps.touched.origin &&
+              formikProps.values.origin === '' ? (
+                <Text style={globalStyles.formWarning}>
+                  Do you want to add an origin?
+                </Text>
+              ) : null}
+              <TextInput
+                placeholder="Varietal"
+                style={styles.input}
+                onChangeText={formikProps.handleChange('varietal')}
+                value={formikProps.values.varietal}
+                onBlur={formikProps.handleBlur('varietal')}
+              />
+              {formikProps.touched.varietal &&
+              formikProps.values.varietal === '' ? (
+                <Text style={globalStyles.formWarning}>
+                  Do you want to add a varietal?
+                </Text>
+              ) : null}
+              <TextInput
+                placeholder="Processing Method"
+                style={styles.input}
+                onChangeText={formikProps.handleChange('processing')}
+                value={formikProps.values.processing}
+                onBlur={formikProps.handleBlur('processing')}
+              />
+              {formikProps.touched.processing &&
+              formikProps.values.processing === '' ? (
+                <Text style={globalStyles.formWarning}>
+                  Do you want to add a processing method?
+                </Text>
+              ) : null}
+              <TextInput
+                placeholder="Cup Profile"
+                style={styles.input}
+                onChangeText={formikProps.handleChange('cupProfile')}
+                value={formikProps.values.cupProfile}
+                onBlur={formikProps.handleBlur('cupProfile')}
+              />
+              <Text style={globalStyles.formError}>
+                {formikProps.touched.cupProfile &&
+                  formikProps.errors.cupProfile}
+              </Text>
+            </View>
+          </KeyboardAwareScrollView>
+        )}
       </Formik>
     </View>
   );
