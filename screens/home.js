@@ -1,13 +1,8 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ImageBackground,
-  StyleSheet,
-} from 'react-native';
+import {View, Text, ImageBackground, StyleSheet} from 'react-native';
+import {HomeButton} from '../components/Button';
 
-const backgroundImage = '../assets/backgroundImage.jpg';
+const backgroundImage = '../assets/home-img.jpg';
 
 export default function Home({navigation}) {
   return (
@@ -16,12 +11,13 @@ export default function Home({navigation}) {
         source={require(backgroundImage)}
         resizeMode="cover"
         style={styles.image}>
-        <Text style={styles.titleText}>Hello CoffeeApp</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('MyCoffee')}>
-          <View>
-            <Text style={styles.selectionText}>See My Coffees</Text>
-          </View>
-        </TouchableOpacity>
+        <Text style={styles.titleText}>Coffee</Text>
+        <Text style={styles.titleText}>Drinker's</Text>
+        <Text style={styles.titleText}>Companion</Text>
+        <HomeButton
+          text="See My Coffees"
+          onPress={() => navigation.navigate('MyCoffee')}
+        />
       </ImageBackground>
     </View>
   );
@@ -36,15 +32,20 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   titleText: {
-    fontSize: 40,
-    color: 'white',
-    left: 20,
-    top: 150,
+    fontSize: 48,
+    fontWeight: 'bold',
+    color: 'black',
+    marginVertical: 8,
+    top: 10,
+    textAlign: 'center',
   },
   selectionText: {
+    borderStyle: 'solid',
+    borderColor: 'white',
+    borderWidth: 1,
     color: 'white',
     fontSize: 24,
-    top: 642,
-    left: 50,
+    top: 400,
+    textAlign: 'center',
   },
 });
