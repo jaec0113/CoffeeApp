@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, FlatList, Button, Modal} from 'react-native';
-import uuid from 'react-native-uuid';
+import {View, Text, FlatList, Button, TouchableOpacity} from 'react-native';
 import Card from '../components/Card';
 import {globalStyles} from '../global/globals';
 
@@ -16,14 +15,16 @@ export default function PreviousCoffee({navigation}) {
       cupProfile: 'Fruity, nice body, bright acidity',
       key: '1',
     },
+    {
+      coffee: 'Kirinyagi',
+      roaster: 'Onyx',
+      origin: 'Kenya',
+      varietal: '',
+      processing: 'washed',
+      cupProfile: 'Fruity, juicy, bright acidity',
+      key: '2',
+    },
   ]);
-
-  const addCoffee = coffee => {
-    coffee.key = uuid.v4();
-    setCoffees(currentCoffees => {
-      return [coffee, ...currentCoffees];
-    });
-  };
 
   return (
     <View style={globalStyles.container}>
@@ -31,11 +32,13 @@ export default function PreviousCoffee({navigation}) {
       <FlatList
         data={coffees}
         renderItem={({item}) => (
-          <Card>
-            <Text>Origin: {item.origin}</Text>
-            <Text>Name: {item.coffee}</Text>
-            <Text>Roaster: {item.roaster}</Text>
-          </Card>
+          <TouchableOpacity onPress={() => navigation.navigate('Coffee', item)}>
+            <Card>
+              <Text>Origin: {item.origin}</Text>
+              <Text>Name: {item.coffee}</Text>
+              <Text>Roaster: {item.roaster}</Text>
+            </Card>
+          </TouchableOpacity>
         )}
       />
       <Button
