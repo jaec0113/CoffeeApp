@@ -8,11 +8,14 @@ export const globalStyles = StyleSheet.create({
   },
   form: {
     flex: 1,
+    backgroundColor: '#111',
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
   screenTitle: {
+    color: 'white',
     fontSize: 24,
+    fontWeight: 'bold',
     marginTop: 40,
   },
   formError: {

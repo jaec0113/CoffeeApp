@@ -1,8 +1,16 @@
 import React from 'react';
-import {StyleSheet, View, Text, TextInput} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  Keyboard,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';
 import * as yup from 'yup';
+import {SubmitCoffeeButton} from '../components/Button';
 import {globalStyles} from '../global/globals';
 
 const reviewSchema = yup.object({
@@ -20,6 +28,7 @@ export default function NewCoffee({addCoffee}) {
       <View>
         <Text style={globalStyles.screenTitle}>Coffee Information</Text>
       </View>
+
       <Formik
         initialValues={{
           coffee: '',
@@ -44,9 +53,11 @@ export default function NewCoffee({addCoffee}) {
                 value={formikProps.values.coffee}
                 onBlur={formikProps.handleBlur('coffee')}
               />
+
               <Text style={globalStyles.formError}>
                 {formikProps.touched.coffee && formikProps.errors.coffee}
               </Text>
+
               <TextInput
                 placeholder="Roaster"
                 style={styles.input}
@@ -107,6 +118,7 @@ export default function NewCoffee({addCoffee}) {
                 {formikProps.touched.cupProfile &&
                   formikProps.errors.cupProfile}
               </Text>
+              <SubmitCoffeeButton text="Add Coffee" />
             </View>
           </KeyboardAwareScrollView>
         )}
@@ -118,7 +130,8 @@ export default function NewCoffee({addCoffee}) {
 const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: 'white',
+    color: 'white',
     margin: 2,
     marginVertical: 15,
     padding: 10,

@@ -21,6 +21,16 @@ export function NewCoffeeButton({text, onPress}) {
   );
 }
 
+export function SubmitCoffeeButton({text, onPress}) {
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.submitCoffeeButton}>
+        <Text style={styles.submitCoffeeButtonText}>{text}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+}
+
 const styles = StyleSheet.create({
   homeButton: {
     borderRadius: 8,
@@ -50,7 +60,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     position: 'absolute',
-    bottom: 0,
+    bottom: 40,
     left: 325,
     zIndex: 10,
   },
@@ -61,4 +71,6 @@ const styles = StyleSheet.create({
     fontSize: 36,
     textAlign: 'center',
   },
+  submitCoffeeButton: {},
+  submitCoffeeButtonText: {},
 });

@@ -99,7 +99,7 @@ export default function PreviousCoffee({navigation}) {
 
   return (
     <View style={styles.coffeeContainer}>
-      <Text>See a Previous Coffee Session</Text>
+      <Text style={styles.screenTitle}>My Coffees</Text>
       <FlatList
         data={coffees}
         renderItem={({item}) => (
@@ -122,7 +122,14 @@ export default function PreviousCoffee({navigation}) {
 
 const styles = StyleSheet.create({
   coffeeContainer: {
-    height: 700,
-    marginBottom: 50,
+    height: 760,
+    backgroundColor: '#111',
+  },
+  screenTitle: {
+    fontSize: 36,
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    marginTop: 10,
   },
 });
